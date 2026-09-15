@@ -30,5 +30,5 @@ function mousePressed(){
 }
 
 function keyPressed(){
-  backgroun(20)
+  background(20)
 }

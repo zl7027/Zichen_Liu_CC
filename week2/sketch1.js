@@ -1,22 +1,34 @@
-let diameter = 50
-let speed = 3
-
 function setup(){
-    createCanvas(windowWidth,windowHeight)
-    noStroke()
+  createCanvaws(windowWidth,windowHeight)
+
+  background(20)
+  strokeWeight(5)
 }
 
 function draw(){
-    background(100)
-    fill(200,100,0)
-    ellipse(width/2,height/2,diameter,diameter)
+}
 
-    diameter += speed
+function mouseDragged(){
 
-    if(diameter > 300){
-        speed = -speed
-    }
-    if(diameter < 50){
-        speed = -speed
-    }
+  let r=map(mouseX,0,width,100,255)
+  let b=map(mouseY,0,height,255,100)
+
+  stroke(r,100,b)
+  strokeWeight(8)
+  line(pmouseX,pmouseY,mouseX,mouseY)
+
+  stroke(255,180)
+  strokeWeight(2)
+  line(pmouseX,pmouseY,mouseX,mouseY)
+}
+
+function mousePressed(){
+  noFill()
+  stroke(255)
+  strokeWeight(2)
+  ellipse(mouseX,mouseY,30,30)
+}
+
+function keyPressed(){
+  backgroun(20)
 }

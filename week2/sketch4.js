@@ -36,7 +36,7 @@ function draw(){
     yV = -yV;
   }
 
-   if(x>height - diameter/2 || x<diameter/2){
+   if(x>width - diameter/2 || x<diameter/2){
     xV = -xV;
   }
 }

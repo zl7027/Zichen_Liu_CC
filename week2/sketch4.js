@@ -32,11 +32,16 @@ function draw(){
 
     diameter=map(y,0,height,80,180)
 
-   if(y>height - diameter/2 || y<diameter/2){
+  if(y > height - diameter/2){
     yV = -yV;
   }
-
-   if(x>width - diameter/2 || x<diameter/2){
-    xV = -xV;
+  if(y < diameter/2 ){
+    yV = -yV;
+  }
+  if(x>width- diameter/2){
+    xV = -xV
+  }
+  if(x < diameter/2){
+    xV = -xV
   }
 }

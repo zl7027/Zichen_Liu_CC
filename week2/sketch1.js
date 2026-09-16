@@ -1,5 +1,5 @@
 function setup(){
-  createCanvaws(windowWidth,windowHeight)
+  createCanvas(windowWidth,windowHeight)
 
   background(20)
   strokeWeight(5)
@@ -26,7 +26,7 @@ function mousePressed(){
   noFill()
   stroke(255)
   strokeWeight(2)
-  ellipse(mouseX,mouseY,30,30)
+
 }
 
 function keyPressed(){

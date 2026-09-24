@@ -37,12 +37,7 @@ function draw(){
             let posX = w * x
             let posY = h * y
 
-            let d = dist(
-                lerpedMouseX,
-                lerpedMouseY,
-                posX,
-                posY
-            )
+            let d = dist(lerpedMouseX, lerpedMouseY, posX, posY)
 
             let force = map(d, 0, 200, 1, 0)
             force = constrain(force, 0, 1)
@@ -64,13 +59,9 @@ function draw(){
 
             fill(r, g, b)
 
-
             push()
 
-            translate(
-                posX + moveX,
-                posY + moveY
-            )
+            translate(posX + moveX, posY + moveY)
 
             ellipse(1, 1, i, i)
 

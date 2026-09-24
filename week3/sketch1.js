@@ -39,12 +39,7 @@ function draw() {
 
         for (let j = 0; j < 6; j++) {
 
-            rect(
-                100 + j * spacing,
-                0,
-                80 + j * 10,
-                20
-            )
+            rect(100 + j * spacing, 0, 80 + j * 10, 20)
 
         }
 

@@ -8,7 +8,6 @@ function setup(){
 
     createCanvas(windowWidth, windowHeight)
 
-    rectMode(CENTER)
     angleMode(DEGREES)
 
     background(0)

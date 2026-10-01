@@ -1,25 +1,28 @@
 let spacing = 55
-let freeze = false
 
-let freezeButton
+let frozen = false
+
+let frozenX
+let frozenY
+
 let saveButton
+
 
 function setup(){
 
-    createCanvas(576, 384)
+    let canvas = createCanvas(576, 384)
 
-    background(245)
+    canvas.parent("canvas-container")
 
     noFill()
-    stroke(20)
+    stroke(0)
     strokeWeight(1)
 
-    freezeButton = createButton("FREEZE")
-    freezeButton.position(10, 400)
-    freezeButton.mousePressed(freezeDrawing)
 
     saveButton = createButton("SAVE SVG")
-    saveButton.position(90, 400)
+
+    saveButton.parent("button-container")
+
     saveButton.mousePressed(saveSVG)
 
 }
@@ -29,8 +32,17 @@ function draw(){
 
     background(245)
 
-    let mouseEffectX = map(mouseX, 0, width, -PI, PI)
-    let mouseEffectY = map(mouseY, 0, height, 10, 45)
+    drawPattern(mouseX, mouseY)
+
+}
+
+
+function drawPattern(mx, my){
+
+    let mouseEffectX = map(mx, 0, width, -PI, PI)
+
+    let mouseEffectY = map(my, 0, height, 10, 45)
+
 
     for(let y = spacing/2; y < height; y += spacing){
 
@@ -40,7 +52,7 @@ function draw(){
 
             translate(x, y)
 
-            let distance = dist(mouseX, mouseY, x, y)
+            let distance = dist(mx, my, x, y)
 
             let angle = sin(distance * 0.02) * mouseEffectX
 
@@ -48,13 +60,17 @@ function draw(){
 
             let size = mouseEffectY + sin(distance * 0.03) * 15
 
+
             ellipse(0, 0, size, size * 2)
 
             rotate(PI / 3)
+
             ellipse(0, 0, size, size * 2)
 
             rotate(PI / 3)
+
             ellipse(0, 0, size, size * 2)
+
 
             pop()
 
@@ -65,23 +81,31 @@ function draw(){
 }
 
 
-function freezeDrawing(){
+function mousePressed(){
 
-    if(freeze == false){
+    if(
+        mouseX >= 0 &&
+        mouseX <= width &&
+        mouseY >= 0 &&
+        mouseY <= height
+    ){
 
-        noLoop()
+        if(frozen == false){
 
-        freeze = true
+            frozenX = mouseX
+            frozenY = mouseY
 
-        freezeButton.html("UNFREEZE")
+            noLoop()
 
-    }else{
+            frozen = true
 
-        loop()
+        }else{
 
-        freeze = false
+            loop()
 
-        freezeButton.html("FREEZE")
+            frozen = false
+
+        }
 
     }
 
@@ -90,9 +114,33 @@ function freezeDrawing(){
 
 function saveSVG(){
 
+    let saveX
+    let saveY
+
+
+    if(frozen == true){
+
+        saveX = frozenX
+        saveY = frozenY
+
+    }else{
+
+        saveX = mouseX
+        saveY = mouseY
+
+    }
+
+
     beginRecordSVG(this, "generative-pattern.svg")
 
-    redraw()
+
+    noFill()
+    stroke(0)
+    strokeWeight(1)
+
+
+    drawPattern(saveX, saveY)
+
 
     endRecordSVG()
 

@@ -1,6 +1,8 @@
 
 let dancers = []
 let time = 0
+let caughtCount = 0
+let gameFinished = false
 
 let lightX = 560
 let lightY = 35
@@ -89,12 +91,22 @@ function draw(){
                 d.trail.shift()
             }
 
-            let beamWidth = map(d.y, lightY, lightBottom, 0, lightWidth)
+            let beamWidth = map(
+                constrain(d.y, lightY, lightBottom),
+                lightY, lightBottom,
+                0, lightWidth
+            )
 
-            if(d.y > lightY &&
-               d.y < lightBottom &&
-               abs(d.x-lightX) < beamWidth){
+            if(d.y + d.size/2 > lightY &&
+               d.y - d.size/2 < lightBottom &&
+               abs(d.x-lightX) < beamWidth + d.size*0.3){
+
                 d.caught = true
+                caughtCount++
+
+                if(caughtCount >= 15){
+                    gameFinished = true
+                }
             }
 
         } else {
@@ -158,9 +170,30 @@ function draw(){
 
     textSize(15)
     text("Click anywhere to summon a dancing Toothless!", width/2, 65)
+
+    textAlign(LEFT)
+    textSize(18)
+    fill(r, g, b)
+    text("CAUGHT: " + caughtCount + " / 15", 20, 105)
+    textAlign(CENTER)
+
+    if(gameFinished){
+
+        fill(255)
+        textSize(24)
+        text("PARTY COMPLETE!", width/2, height-35)
+
+        if(frameCount % 30 == 0){
+            window.location.href = "result.html"
+        }
+    }
 }
 
 function mousePressed(){
+
+    if(gameFinished){
+        return
+    }
 
     if(mouseX < 0 || mouseX > width || mouseY < 0 || mouseY > height){
         return
@@ -220,5 +253,7 @@ function mousePressed(){
 function keyPressed(){
     if(key == 'r' || key == 'R'){
         dancers = []
+        caughtCount = 0
+        gameFinished = false
     }
 }

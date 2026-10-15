@@ -1,0 +1,18 @@
+<head>
+    <h1> Week 6 Homework Assignment</h1>
+  <script src="https://cdn.jsdelivr.net/npm/p5@2.3.2/lib/p5.js"></script>
+
+</head>
+
+<body>
+  <h2>Dancing Toothless</h2>
+  <h5>For this assignment, I used the frame sequence animation demonstrated by the instructor in class as a foundation and attempted to develop a simple character walking animation into a more engaging interactive experience. The teacher’s demo used a set of PNG images, storing different animation frames in an array and using a counter to loop them, allowing the character to move left and right. However, since I chose a GIF with many frames, I began to wonder if I could load the GIF directly instead of using PNGs. At first, the GIF wouldn’t display properly, and multiple characters might play simultaneously. After several revisions, I tried reloading the GIF each time the button was clicked, allowing the newly appearing Toothless to play its animation independently.
+In terms of interactive design, I didn’t want the characters to simply move according to the arrow keys, so I changed it so that each time the canvas is clicked, a Toothless of a different size appears from a random corner. I drew inspiration from the “bouncing ball” exercise we did in class earlier, using xV and yV to control the movement speed, and reversing the direction when the character hits the edge of the canvas, so they continuously bounce around the screen while “dancing.”
+In addition, I tried adding more visual effects. I used an array to track each character’s previous position, then used a for loop to draw circles of varying opacity and size, creating a gradient-style neon trail. I also used sin() to make the Spotlight’s RGB color change over time, and combined triangle() and ellipse() to create a beam of stage lighting shining down from above. By checking whether a Toothless was within the beam’s range, I made them stop moving when they came into contact with the light, then used tint() and a gradually decreasing alpha to make the character slowly turn neon and fade away. Other characters that didn’t touch the light continued moving until they were captured by the Spotlight.</h5>
+  <h4>Press "R" to refresh.</h4>
+
+ <script src = "sketch1.js" ></script>
+  <!-- <script src="sketch2.js"></script> -->
+   <!-- <script src="sketch1.js"></script> -->
+    <a  href="../index.html"> back to landing page </a>
+  </body>               
